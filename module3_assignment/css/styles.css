@@ -1,0 +1,78 @@
+/* styles.css */
+/* CSS style definitions for index.html for Assignment 3 */
+/* Megan Greatorex */
+
+body {
+    font-family: Verdana, sans-serif;
+}
+
+/**** HEADER STYLES ****/
+#header-nav {
+    background-color: #3d6d75;
+    border-radius: 0;
+    border: 0;
+}
+
+.navbar-header {
+    background-color: #3d6d75;
+}
+
+.navbar-nav {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: #c9eaf0;
+}
+
+.navbar-brand {
+    height: 75px;
+}
+
+.navbar-brand h1 {
+    padding: 15px 20px;
+    color: #c9eaf0;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 0px;
+    line-height: 0.75;
+}
+
+.navbar-default .navbar-toggle {
+    clear: both;
+    margin-top: -55px;
+    background-color: #c9eaf0;
+    border: 1px solid #062e36;
+    margin-right: 40px;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #062e36;
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background-color: #c9eaf0;
+}
+
+#nav-list a {
+    color: #3d6d75;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+#nav-list a:hover {
+    background: #ebf5f7;
+}
+
+/**** BODY STYLES ****/
+.row {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.tile {
+    background-color: #ebf5f7;
+    padding: 15px;
+}
+
+#chicken, #beef, #sushi {
+    margin: 15px 0px;
+}
