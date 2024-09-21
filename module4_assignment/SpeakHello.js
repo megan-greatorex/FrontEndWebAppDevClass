@@ -1,5 +1,9 @@
 (function (window) {
-  // STEP 2: Wrap the entire contents of SpeakHello.js inside of an IIFE
+// SpeakHello.js
+// Assignment 4 Solution JS Code
+// Megan Greatorex
+
+// STEP 2: Wrap the entire contents of SpeakHello.js inside of an IIFE
 // See Lecture 52, part 2
 
 
@@ -18,6 +22,7 @@ helloSpeaker.speak = function (name) {
   console.log(speakWord + " " + name);
 }
 
+// Array.prototype.map step from assignment
 helloSpeaker.speakSimple = function (name) {
   return speakWord + " " + name;
 }

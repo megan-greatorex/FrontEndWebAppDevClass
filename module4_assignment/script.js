@@ -1,4 +1,8 @@
 (function () {
+// script.js
+// Assignment 4 Solution JS Code
+// Megan Greatorex
+
 // *******************************
 // START HERE IF YOU WANT A MORE CHALLENGING STARTING POINT FOR THIS ASSIGNMENT
 // *******************************
@@ -57,13 +61,14 @@ for (var name in names) {
   // 'j'. If the same, call byeSpeaker's 'speak' method with the current name
   // in the loop. Otherwise, call helloSpeaker's 'speak' method with the current
   // name in the loop.
-  if (firstLetter == 'j') {
+  if (firstLetter === 'j') {
     byeSpeaker.speak(names[name]);
   } else {
     helloSpeaker.speak(names[name]);
   }
 }
 
+// Array.prototype.map step from assignment
 function setGreeting(name) {
   var firstLetter = name.charAt(0).toLowerCase();
   if (firstLetter === 'j') {
@@ -75,6 +80,7 @@ function setGreeting(name) {
 
 const mapFunction = names.map((name) => setGreeting(name));
 
+// Array.prototype.reduce step from assignment
 const initialValue = {hello: [], bye: []};
 const reduceFunction = names.reduce((accumulator, currentValue) => {
   if(currentValue.charAt(0).toLowerCase() === 'j'){
