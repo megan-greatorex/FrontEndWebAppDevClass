@@ -1,57 +1,64 @@
 (function () {
-    'use strict';
+'use strict';
         
-    angular.module('ShoppingListCheckOff', [])
-        .controller('ToBuyController', ToBuyController)
-        .controller('AlreadyBoughtController', AlreadyBoughtController)
-        .service('ShoppingListCheckOffService', ShoppingListCheckOffService);
+angular.module('ShoppingListCheckOff', [])
+    .controller('ToBuyController', ToBuyController)
+    .controller('AlreadyBoughtController', AlreadyBoughtController)
+    .service('ShoppingListCheckOffService', ShoppingListCheckOffService)
+    .filter('calculateTotalPrice', CalculateTotalPriceFilter);
     
 
-        ToBuyController.$inject = ['ShoppingListCheckOffService'];
-        function ToBuyController(ShoppingListCheckOffService) {
-            var toBuy = this;
+ToBuyController.$inject = ['ShoppingListCheckOffService'];
+function ToBuyController(ShoppingListCheckOffService) {
+    var toBuy = this;
 
-            toBuy.items = ShoppingListCheckOffService.getItemsToBuy();
+    toBuy.items = ShoppingListCheckOffService.getItemsToBuy();
 
-            toBuy.buyItem = function (itemIndex) {
-                console.log("In buy item!");
-                console.log(itemIndex);
-                ShoppingListCheckOffService.buyItem(itemIndex);
-            }
+    toBuy.buyItem = function (itemIndex) {
+        ShoppingListCheckOffService.buyItem(itemIndex);
+    }
 
-        }
+}
 
-        AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
-        function AlreadyBoughtController(ShoppingListCheckOffService) {
-            var alreadyBought = this;
+AlreadyBoughtController.$inject = ['ShoppingListCheckOffService', '$scope', 'calculateTotalPriceFilter'];
+function AlreadyBoughtController(ShoppingListCheckOffService, $scope, calculateTotalPriceFilter) {
+    var alreadyBought = this;
 
-            alreadyBought.items = ShoppingListCheckOffService.getItemsBought();
+    alreadyBought.items = ShoppingListCheckOffService.getItemsBought();
 
-        }
+    $scope.getTotalPrice = function (item) {
+        var totalPrice = calculateTotalPriceFilter(item);
+        return totalPrice;
+    };
 
-        function ShoppingListCheckOffService() {
-            var service = this;
+}
 
-            var itemsToBuy = [{ name: "loaves of bread", quantity: 10 }, { name: "apples", quantity: 10 }, { name: "bananas", quantity: 10 }, { name: "milk cartons", quantity: 10 }, { name: "cookies", quantity: 10 }];
-            var itemsBought = [];
+function ShoppingListCheckOffService() {
+    var service = this;
 
-            service.getItemsToBuy = function () {
-                return itemsToBuy;
-            }
+    var itemsToBuy = [{ name: "loaves of bread", quantity: 2, pricePerItem: 2 }, { name: "apples", quantity: 4, pricePerItem: 1 }, { name: "bananas", quantity: 6,  pricePerItem: 3 }, { name: "milk cartons", quantity: 3,  pricePerItem: 5 }, { name: "cookies", quantity: 4,  pricePerItem:15}];
+    var itemsBought = [];
 
-            service.getItemsBought = function () {
-                return itemsBought;
-            }
+    service.getItemsToBuy = function () {
+        return itemsToBuy;
+    }
 
-            service.buyItem = function(itemIndex) {
-                console.log("In function!");
-                console.log(itemsBought);
-                itemsBought.push(itemsToBuy[itemIndex]);
-                console.log(itemsBought);
-                itemsToBuy.splice(itemIndex, 1);
-                return itemsToBuy;
-            }
-        }
+    service.getItemsBought = function () {
+        return itemsBought;
+    }
+
+    service.buyItem = function(itemIndex) {
+        itemsBought.push(itemsToBuy[itemIndex]);
+        itemsToBuy.splice(itemIndex, 1);
+        return itemsToBuy;
+    }
+}
+
+function CalculateTotalPriceFilter(){
+    return function (item) {
+        return item.quantity * item.pricePerItem;
+    }
+}
     
 
 })();

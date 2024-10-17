@@ -20,6 +20,10 @@
     button > span {
       color: green;
     }
+    .form-control {
+      width: 50px;
+      display: inline;
+    }
   </style>
 </head>
 <script src="angular.min.js"></script>
@@ -35,7 +39,7 @@
       <h2>To Buy:</h2>
       <ul>
         <li ng-repeat="item in toBuy.items">
-          Buy {{ item.quantity }} {{ item.name }}
+          Buy <input type="text" class="form-control" size="4" ng-model="item.quantity"></input> {{ item.name }}
           <button ng-click="toBuy.buyItem($index);" class="btn btn-default">Bought</button>
         </li>
       </ul>
@@ -47,7 +51,7 @@
       <h2>Already Bought:</h2>
       <ul>
         <li ng-repeat="item in alreadyBought.items">
-          Bought {{ item.quantity }} {{ item.name }}
+          Bought {{ item.quantity }} of {{ item.name }} for total price of $${{ getTotalPrice(item) | currency }}
         </li>
       </ul>
       <div ng-if="alreadyBought.items.length == 0;" class="emptyMessage">Nothing bought yet.</div>
