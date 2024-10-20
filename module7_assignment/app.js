@@ -20,14 +20,14 @@ function ToBuyController(ShoppingListCheckOffService) {
 
 }
 
-AlreadyBoughtController.$inject = ['ShoppingListCheckOffService', '$scope', 'calculateTotalPriceFilter'];
-function AlreadyBoughtController(ShoppingListCheckOffService, $scope, calculateTotalPriceFilter) {
+AlreadyBoughtController.$inject = ['ShoppingListCheckOffService', '$scope', 'calculateTotalPriceFilter', '$filter'];
+function AlreadyBoughtController(ShoppingListCheckOffService, $scope, calculateTotalPriceFilter, $filter) {
     var alreadyBought = this;
 
     alreadyBought.items = ShoppingListCheckOffService.getItemsBought();
 
     $scope.getTotalPrice = function (item) {
-        var totalPrice = calculateTotalPriceFilter(item);
+        var totalPrice = calculateTotalPriceFilter(item, $filter);
         return totalPrice;
     };
 
@@ -36,7 +36,9 @@ function AlreadyBoughtController(ShoppingListCheckOffService, $scope, calculateT
 function ShoppingListCheckOffService() {
     var service = this;
 
-    var itemsToBuy = [{ name: "loaves of bread", quantity: 2, pricePerItem: 2 }, { name: "apples", quantity: 4, pricePerItem: 1 }, { name: "bananas", quantity: 6,  pricePerItem: 3 }, { name: "milk cartons", quantity: 3,  pricePerItem: 5 }, { name: "cookies", quantity: 4,  pricePerItem:15}];
+    var itemsToBuy = [{ name: "loaves of bread", quantity: 2, pricePerItem: 2 }, { name: "apples", quantity: 4, pricePerItem: 1 }, 
+        { name: "bananas", quantity: 6,  pricePerItem: 3 }, { name: "milk cartons", quantity: 3,  pricePerItem: 5 }, 
+        { name: "cookies", quantity: 4,  pricePerItem: 15}, { name: "cucumbers", quantity: 5,  pricePerItem: 2}];
     var itemsBought = [];
 
     service.getItemsToBuy = function () {
@@ -55,8 +57,10 @@ function ShoppingListCheckOffService() {
 }
 
 function CalculateTotalPriceFilter(){
-    return function (item) {
-        return item.quantity * item.pricePerItem;
+    return function (item, $filter) {
+        var totalPrice = item.quantity * item.pricePerItem;
+        var price = $filter('currency')(totalPrice);
+        return '$$' + price;
     }
 }
     
