@@ -20,14 +20,14 @@ function ToBuyController(ShoppingListCheckOffService) {
 
 }
 
-AlreadyBoughtController.$inject = ['ShoppingListCheckOffService', '$scope', 'calculateTotalPriceFilter', '$filter'];
-function AlreadyBoughtController(ShoppingListCheckOffService, $scope, calculateTotalPriceFilter, $filter) {
+AlreadyBoughtController.$inject = ['ShoppingListCheckOffService', '$scope', 'calculateTotalPriceFilter'];
+function AlreadyBoughtController(ShoppingListCheckOffService, $scope, calculateTotalPriceFilter) {
     var alreadyBought = this;
 
     alreadyBought.items = ShoppingListCheckOffService.getItemsBought();
 
     $scope.getTotalPrice = function (item) {
-        var totalPrice = calculateTotalPriceFilter(item, $filter);
+        var totalPrice = calculateTotalPriceFilter(item);
         return totalPrice;
     };
 
@@ -57,10 +57,9 @@ function ShoppingListCheckOffService() {
 }
 
 function CalculateTotalPriceFilter(){
-    return function (item, $filter) {
+    return function (item) {
         var totalPrice = item.quantity * item.pricePerItem;
-        var price = $filter('currency')(totalPrice);
-        return '$$' + price;
+        return '$$$' + totalPrice.toFixed(2);
     }
 }
     
