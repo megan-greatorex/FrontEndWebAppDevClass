@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="col-12">
+        <ul>
+            <li ng-repeat="item in narrow.found">
+                <b>Name:</b> {{item.name}}, <b>Short Name:</b> {{item.short_name}}, <b>Description:</b> {{item.description}}
+                <button ng-click="narrow.onRemove({index: $index});">Don’t want this one!</button>
+            </li>
+        </ul>
+    </div>
+    <div class="error" ng-if="narrow.found.length == 0;">Nothing found</div>
+</div>
