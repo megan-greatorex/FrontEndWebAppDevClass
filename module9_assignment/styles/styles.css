@@ -1,0 +1,21 @@
+h1, h3 {
+    padding: 20px;
+}
+
+li[ui-sref]:hover {
+    display: inline-block;
+    cursor: pointer;
+    color: red;
+    text-decoration: underline;
+}
+
+a[ui-sref] {
+    display: inline-block;
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 12px;
+    background-color: #c1d8de;
+    text-decoration: none;
+    font-size: 20px;
+    margin-left: 20px;
+}
