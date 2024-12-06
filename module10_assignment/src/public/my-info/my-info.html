@@ -1,0 +1,33 @@
+  <h2 id="sign-up-title" class="text-center">
+    Registered Information
+  </h2>
+  <br>
+  
+  <div class="container">
+
+    <div id="info" ng-if="!myInfoCtrl.userInfo.infoSaved" class="successMessage">
+      Not Signed Up Yet. <a ui-sref="public.signup">Sign up Now!</a>
+    </div>
+
+    <div id="info" ng-if="myInfoCtrl.userInfo.infoSaved" class="successMessage">
+      <h3>User Information:</h3>
+      <span style="text-decoration: underline;">First Name:</span> <span>{{myInfoCtrl.userInfo.firstName}}</span>
+      <br>
+      <span style="text-decoration: underline;">Last Name: </span><span>{{myInfoCtrl.userInfo.lastName}}</span>
+      <br>
+      <span style="text-decoration: underline;">Email Address: </span><span>{{myInfoCtrl.userInfo.email}}</span>
+      <br>
+      <span style="text-decoration: underline;">Phone Number: </span><span>{{myInfoCtrl.userInfo.phoneNumber}}</span>
+      <br>
+      <br>
+      <h3>Favorite Item:</h3>
+      <span style="text-decoration: underline;">Item Title: </span><span>{{myInfoCtrl.userInfo.favoriteItem.name}}</span>
+      <br>
+      <span style="text-decoration: underline;">Item Description: </span><span>{{myInfoCtrl.userInfo.favoriteItem.description}}</span>
+      <br>
+      <span style="text-decoration: underline;">Item Image: </span>
+      <img class="img-responsive" width="250" height="150" ng-src="{{myInfoCtrl.userInfo.image}}" alt="{{myInfoCtrl.userInfo.favoriteItem.name}}">
+      <br>
+    </div>
+
+  </div>
