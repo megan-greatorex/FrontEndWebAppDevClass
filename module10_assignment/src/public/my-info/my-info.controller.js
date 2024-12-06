@@ -9,4 +9,4 @@
         myInfoCtrl.userInfo = userInfoSaved;
     }
     
-    })();
+})();
